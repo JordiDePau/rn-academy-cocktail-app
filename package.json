@@ -1,10 +1,11 @@
 {
   "name": "setup-try-out",
-  "main": "index.ts",
   "version": "1.0.0",
+  "private": true,
+  "main": "index.ts",
   "scripts": {
     "android": "expo run:android",
-    "ci:local": "pnpm code:lint && pnpm code:format && pnpm code:typecheck  && pnpm deps:cyclic && pnpm code:analyse",
+    "ci:local": "pnpm deps:lint && pnpm code:lint && pnpm code:format && pnpm code:typecheck  && pnpm deps:cyclic && pnpm code:analyse",
     "code:analyse": "knip",
     "code:format": "prettier . --check",
     "code:format:fix": "prettier . --write",
@@ -24,8 +25,8 @@
   "dependencies": {
     "expo": "54.0.32",
     "expo-splash-screen": "31.0.13",
-    "expo-system-ui": "~6.0.9",
-    "expo-updates": "^29.0.16",
+    "expo-system-ui": "6.0.9",
+    "expo-updates": "29.0.16",
     "react": "19.1.0",
     "react-native": "0.81.5"
   },
@@ -33,11 +34,15 @@
     "@types/react": "19.1.0",
     "eslint": "9.25.0",
     "eslint-config-expo": "10.0.0",
+    "eslint-plugin-react-hooks-addons": "0.5.0",
+    "eslint-plugin-react-native": "5.0.0",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "eslint-plugin-unused-imports": "4.3.0",
     "knip": "5.83.0",
     "madge": "8.0.0",
     "prettier": "3.8.1",
     "syncpack": "13.0.4",
     "typescript": "5.9.2"
   },
-  "private": true
+  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
 }
