@@ -1,50 +1,105 @@
-# Welcome to your Expo app 👋
+# React Native Starter
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+An opinionated Expo/React Native starter template with comprehensive tooling for code quality and developer experience.
 
-## Get started
+## Tech Stack
 
-1. Install dependencies
+- **React Native** with **Expo** (SDK 54)
+- **TypeScript** for type safety
+- **pnpm** as package manager
 
-   ```bash
-   npm install
-   ```
+## Tooling
 
-2. Start the app
+| Tool | Purpose |
+|------|---------|
+| ESLint | Linting with auto-import sorting, unused import removal, React Native rules |
+| Prettier | Code formatting |
+| TypeScript | Type checking |
+| Knip | Dead code detection |
+| Madge | Circular dependency detection |
+| Syncpack | Dependency version management |
 
-   ```bash
-   npx expo start
-   ```
+## Getting Started
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Node.js 18+
+- pnpm (`corepack enable && corepack prepare pnpm@latest --activate`)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### Installation
 
 ```bash
-npm run reset-project
+pnpm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Development
 
-## Learn more
+```bash
+pnpm start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+For platform-specific builds:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+pnpm ios        # Run on iOS simulator
+pnpm android    # Run on Android emulator
+```
 
-## Join the community
+## Scripts
 
-Join our community of developers creating universal apps.
+### Development
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+| Script | Description |
+|--------|-------------|
+| `pnpm start` | Start Expo dev server |
+| `pnpm start:clean` | Start with cache cleared |
+| `pnpm ios` | Build and run on iOS |
+| `pnpm android` | Build and run on Android |
+| `pnpm prebuild` | Generate native projects |
+
+### Code Quality
+
+| Script | Description |
+|--------|-------------|
+| `pnpm code:lint` | Check for linting errors |
+| `pnpm code:lint:fix` | Auto-fix linting errors |
+| `pnpm code:format` | Check code formatting |
+| `pnpm code:format:fix` | Auto-fix formatting |
+| `pnpm code:typecheck` | Run TypeScript type checking |
+| `pnpm code:analyse` | Detect dead/unused code with Knip |
+
+### Dependencies
+
+| Script | Description |
+|--------|-------------|
+| `pnpm deps:lint` | Check dependency issues with Syncpack |
+| `pnpm deps:format` | Format package.json with Syncpack |
+| `pnpm deps:cyclic` | Detect circular dependencies |
+| `pnpm deps:update` | Update dependencies interactively |
+| `pnpm deps:verify` | Verify dependency version consistency |
+
+### CI
+
+```bash
+pnpm ci:local
+```
+
+Runs the full quality check pipeline: dependency lint, code lint, format check, type check, circular dependency check, and dead code analysis.
+
+## Project Structure
+
+```
+src/
+  app/           # Application screens and navigation
+    screens/     # Screen components
+```
+
+## Configuration Files
+
+| File | Purpose |
+|------|---------|
+| `eslint.config.mjs` | ESLint flat config with import sorting, React Native rules |
+| `.prettierrc.json` | Prettier formatting options |
+| `tsconfig.json` | TypeScript configuration |
+| `knip.config.ts` | Dead code detection settings |
+| `.syncpackrc.js` | Dependency management rules |
