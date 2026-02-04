@@ -21,7 +21,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.acerta_itp.setuptryout"
+      "package": "com.jordidepau.setuptryout"
     },
     "plugins": [
       [
@@ -35,10 +35,28 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/CrimsonText-Regular.ttf",
+            "./assets/fonts/CrimsonText-Bold.ttf",
+            "./assets/fonts/CrimsonText-Italic.ttf",
+            "./assets/fonts/CrimsonText-BoldItalic.ttf",
+            "./assets/fonts/BodoniModa-Regular.ttf",
+            "./assets/fonts/BodoniModa-Bold.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {
       "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7c12fffa-4da1-4c7d-80fb-dbab67ba2186"
+      }
     }
   }
 }
