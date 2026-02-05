@@ -5,17 +5,17 @@ import { StyleSheet } from 'react-native-unistyles';
 import { Image, ImageBackground } from 'expo-image';
 import { useNavigation } from 'expo-router';
 
-import { useCocktailsListQuery } from 'app/queries/cocktails';
+import { useCocktailsListQuery } from 'core/modules/cocktails/CocktailListQuery';
 
-import Search from '../../../assets/icon/search.svg';
+import Search from '../../../../assets/icon/search.svg';
 
 // Header component with title and search button
-const Header: React.FC = () => {
+const Header = () => {
   const { navigate } = useNavigation();
 
   return (
     <ImageBackground
-      source={require('../../../assets/images/hero.png')}
+      source={require('../../../../assets/images/hero.png')}
       style={styles.backgroundImage}
     >
       <Text style={styles.title}>Bartenders Friends</Text>
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
       >
         <View style={[styles.outer, { width: 52, height: 52 }]}>
           <View style={[styles.inner, { width: 52 * 0.78, height: 52 * 0.78 }]}>
-            <Search style={styles.searchIcon}/>
+            <Search style={styles.searchIcon} />
           </View>
         </View>
       </Pressable>
@@ -43,7 +43,6 @@ interface Props {
 
 export const OverviewScreen: Props = () => {
   const { data, isLoading, error, refetch } = useCocktailsListQuery();
-  const { navigate } = useNavigation();
   const firstCocktail = data ? data[0] : null;
 
   return (
@@ -173,7 +172,7 @@ export const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: theme.typography.size.xxl,
-    borderBottomColor : theme.colors.accent,
+    borderBottomColor: theme.colors.accent,
     borderStyle: 'solid',
     borderBottomWidth: 2,
     paddingBottom: theme.spacing.sm,
@@ -186,7 +185,7 @@ export const styles = StyleSheet.create((theme) => ({
     fontWeight: theme.typography.weight.bold,
     fontFamily: theme.typography.fontFamily.title,
     color: theme.colors.text,
-    borderBottomColor : theme.colors.accent,
+    borderBottomColor: theme.colors.accent,
     borderStyle: 'solid',
     borderBottomWidth: 1,
     paddingBottom: theme.spacing.sm,

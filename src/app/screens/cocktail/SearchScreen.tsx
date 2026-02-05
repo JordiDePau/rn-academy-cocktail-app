@@ -1,35 +1,43 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { FlatList, Pressable, RefreshControl, Text, TextInput, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { ImageBackground } from 'expo-image';
 import { useNavigation } from 'expo-router';
+import { useCocktailStore } from 'providers/store/CocktailsStore';
+import { searchQueryNameSelector, setNameSelector } from 'providers/store/filter/selector';
 
 import { CocktailListItem } from 'app/components/CocktailListItem';
-import { useCocktailsListQuery } from 'app/queries/cocktails';
+import { useCocktailsListQuery } from 'core/modules/cocktails/CocktailListQuery';
 
-import Close from '../../../assets/icon/close.svg';
-import { useCocktailStore } from 'store/CocktailsStore';
-import { searchQueryNameSelector, setNameSelector } from 'store/filter/selector';
+import Close from '../../../../assets/icon/close.svg';
 
-
-interface Props {
-}
+interface Props {}
 
 export const SearchScreen: Props = () => {
   const { data, isLoading, error, refetch } = useCocktailsListQuery();
   const searchName = useCocktailStore(searchQueryNameSelector);
   const setSearchName = useCocktailStore(setNameSelector);
 
-  const filteredCocktails = useMemo(() => data?.filter((cocktail) => {
-      return cocktail.name.toLowerCase().includes(searchName.toLowerCase());
-    }), [data, searchName]);
+  const filteredCocktails = useMemo(
+    () =>
+      data?.filter((cocktail) => cocktail.name.toLowerCase().includes(searchName.toLowerCase())),
+    [data, searchName],
+  );
+
+  //create pagination state
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+
+  //create table instanc
 
   const { navigate } = useNavigation();
 
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../../../assets/images/hero.png')}
+        source={require('../../../../assets/images/hero.png')}
         style={styles.backgroundImage}
       >
         <TextInput

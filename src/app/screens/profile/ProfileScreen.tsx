@@ -1,16 +1,16 @@
 //boiler react native screen profile
 import React from 'react';
-import { StyleSheet,Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 interface Props {
   // Define any props you might need here
 }
 
 export const ProfileScreen: Props = () => (
-    <View style={styles.container}>
-      <Text style={styles.title}>Profile Screen</Text>
-    </View>
-  );
+  <View style={styles.container}>
+    <Text style={styles.title}>Profile Screen</Text>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {

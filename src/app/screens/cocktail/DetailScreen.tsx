@@ -1,10 +1,10 @@
 import React from 'react';
-import { FlatList, Pressable, StyleSheet,Text, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { Image, ImageBackground } from 'expo-image';
+import { ImageBackground } from 'expo-image';
 import { useNavigation } from 'expo-router';
 
-import { useCocktailQuery, useCocktailsListQuery } from 'app/queries/cocktails';
+import { useCocktailQuery } from 'core/modules/cocktails/CocktailQuery';
 
 interface Props {
   // Define any props you might need here
@@ -13,7 +13,6 @@ interface Props {
 export const DetailScreen: Props = () => {
   const route = useRoute();
   const { id } = route.params;
-  console.log("Detail Screen ID:", id);
   const { data, isLoading, error, refetch } = useCocktailQuery(id);
   const cocktail = data;
   const { navigate } = useNavigation();
@@ -47,10 +46,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     flex: 1,
     justifyContent: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
   infoContainer: {
     padding: 16,
