@@ -2,8 +2,10 @@ const INITIAL_STATE = {
   searchQueryName: '',
 };
 
-export const createFilterSlice = (p0: unknown, set: (arg0: { searchQueryName: any }) => any) => ({
+// @ts-ignore
+export const createFilterSlice = (set) => ({
   ...INITIAL_STATE,
-  setSearchQueryName: (nameQuery: any) => set({ searchQueryName: nameQuery }),
+  // @ts-ignore
+  setSearchQueryName: (nameQuery) => set({ searchQueryName: nameQuery }),
   resetAll: () => set(INITIAL_STATE),
 });
