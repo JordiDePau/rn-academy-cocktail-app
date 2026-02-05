@@ -1,4 +1,3 @@
-import "app/ui/theme/unistyle";
 import { useEffect } from 'react';
 import { initReactI18next, useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
@@ -20,6 +19,7 @@ import { OverviewScreen } from 'app/screens/OverviewScreen';
 import { ProfileScreen } from 'app/screens/ProfileScreen';
 import { SearchScreen } from 'app/screens/SearchScreen';
 
+import "app/ui/theme/unistyle";
 import 'app/ui/theme/tokens';
 
 const ProfileStack = createNativeStackNavigator({

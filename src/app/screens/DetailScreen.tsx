@@ -14,8 +14,8 @@ export const DetailScreen: Props = () => {
   const route = useRoute();
   const { id } = route.params;
   console.log("Detail Screen ID:", id);
-  const { cocktail, isLoading, error, refetch } = useCocktailQuery(id);
-  console.log(cocktail)
+  const { data, isLoading, error, refetch } = useCocktailQuery(id);
+  const cocktail = data;
   const { navigate } = useNavigation();
 
   return (

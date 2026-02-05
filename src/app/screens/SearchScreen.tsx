@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FlatList, Pressable, RefreshControl, Text, TextInput, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { ImageBackground } from 'expo-image';
@@ -8,60 +8,58 @@ import { CocktailListItem } from 'app/components/CocktailListItem';
 import { useCocktailsListQuery } from 'app/queries/cocktails';
 
 import Close from '../../../assets/icon/close.svg';
-
-const Header: React.FC = () => {
-//hook for search input and navigation
-
-  const { navigate } = useNavigation();
-
-
-  return (
-    <ImageBackground
-      source={require('../../../assets/images/hero.png')}
-      style={styles.backgroundImage}
-    >
-      <TextInput
-        placeholder="Search cocktails..."
-        // todo
-        placeholderTextColor="rgba(255, 255, 255, 0.7)"
-        style={styles.title}
-      />
-      <Pressable
-        onPress={() => navigate('overview')}
-        hitSlop={10}
-        style={({ pressed }) => [
-          styles.wrap,
-          { width: 52, height: 52, opacity: pressed ? 0.85 : 1 },
-        ]}
-      >
-        <View style={[styles.outer, { width: 52, height: 52 }]}>
-          <View style={[styles.inner, { width: 52 * 0.78, height: 52 * 0.78 }]}>
-            <Close style={styles.closeIcon} />
-          </View>
-        </View>
-      </Pressable>
-    </ImageBackground>
-  );
-};
-
+import { useCocktailStore } from 'store/CocktailsStore';
+import { searchQueryNameSelector, setNameSelector } from 'store/filter/selector';
 
 
 interface Props {
-  // Define any props you might need here
 }
 
 export const SearchScreen: Props = () => {
   const { data, isLoading, error, refetch } = useCocktailsListQuery();
+  const searchName = useCocktailStore(searchQueryNameSelector);
+  const setSearchName = useCocktailStore(setNameSelector);
+
+  const filteredCocktails = useMemo(() => data?.filter((cocktail) => {
+      return cocktail.name.toLowerCase().includes(searchName.toLowerCase());
+    }), [data, searchName]);
+
   const { navigate } = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Header/>
+      <ImageBackground
+        source={require('../../../assets/images/hero.png')}
+        style={styles.backgroundImage}
+      >
+        <TextInput
+          placeholder='Search cocktails...'
+          // todo
+          placeholderTextColor='rgba(255, 255, 255, 0.7)'
+          style={styles.title}
+          value={searchName}
+          onChangeText={setSearchName}
+        />
+        <Pressable
+          onPress={() => navigate('overview')}
+          hitSlop={10}
+          style={({ pressed }) => [
+            styles.wrap,
+            { width: 52, height: 52, opacity: pressed ? 0.85 : 1 },
+          ]}
+        >
+          <View style={[styles.outer, { width: 52, height: 52 }]}>
+            <View style={[styles.inner, { width: 52 * 0.78, height: 52 * 0.78 }]}>
+              <Close style={styles.closeIcon} />
+            </View>
+          </View>
+        </Pressable>
+      </ImageBackground>
       {isLoading ? <Text>Loading...</Text> : null}
       {error ? <Text>Error loading cocktails</Text> : null}
       {!isLoading ? (
         <FlatList
-          data={data}
+          data={filteredCocktails}
           renderItem={({ item }) => (
             <Pressable onPress={() => navigate('detail', { id: item.id })}>
               <CocktailListItem name={item?.name} imageURI={item?.imageURI} />

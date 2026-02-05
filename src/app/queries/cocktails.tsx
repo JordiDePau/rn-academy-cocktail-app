@@ -43,13 +43,13 @@ const getCocktail = async ({ id = 1, unit = 'ml' }: CocktailQueryProps) => {
 };
 
 export const useCocktailQuery = (id) => {
-  const { cocktail, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['cocktail', id],
     queryFn: () => getCocktail({id, unit: 'ml' }),
     staleTime: TIME_ONE_MINUTE * 5, // Data is 5 min "vers"
   });
 
-  return { cocktail, isLoading, error, refetch };
+  return { data, isLoading, error, refetch };
 };
 
 export type CocktailType = {
