@@ -145,7 +145,7 @@ export const styles = StyleSheet.create((theme) => ({
     justifyContent: 'center',
   },
   searchIcon: {
-    transform: [{ rotate: '45deg' }],
+    transform: [{ rotate: '-45deg' }],
     width: 24,
     height: 24,
   },
