@@ -29,7 +29,7 @@ const Header: React.FC = () => {
       >
         <View style={[styles.outer, { width: 52, height: 52 }]}>
           <View style={[styles.inner, { width: 52 * 0.78, height: 52 * 0.78 }]}>
-            <Text style={styles.iconUpright}>S</Text>
+            <Search style={styles.searchIcon}/>
           </View>
         </View>
       </Pressable>
@@ -50,13 +50,21 @@ export const OverviewScreen: Props = () => {
     <View style={styles.container}>
       <Header />
       <View>
-        {isLoading ?<ImageBackground style={styles.loadingImg}>
-          <Text>Loading IMG</Text>
-        </ImageBackground> : <Image source={firstCocktail?.imageURI} />}
+        {isLoading ? (
+          <ImageBackground style={styles.loadingImg}>
+            <Text>Loading IMG</Text>
+          </ImageBackground>
+        ) : (
+          <Image style={styles.loadingImg} source={firstCocktail?.imageURI} />
+        )}
       </View>
       {isLoading ? <Text>Loading...</Text> : null}
       {error ? <Text style={styles.error}>{error.message}</Text> : null}
-      {!isLoading ? <Text>{firstCocktail?.name}</Text> : null}
+      {!isLoading ? (
+        <View style={styles.cocktailInfo}>
+          <Text style={styles.cocktailTitle}>{firstCocktail?.name}</Text>
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -136,6 +144,11 @@ export const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  searchIcon: {
+    transform: [{ rotate: '45deg' }],
+    width: 24,
+    height: 24,
+  },
 
   iconUpright: {
     transform: [{ rotate: '-45deg' }], // counter the outer rotation
@@ -149,10 +162,33 @@ export const styles = StyleSheet.create((theme) => ({
     color: theme.colors.danger,
   },
   loadingImg: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 400,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.colors.danger,
+  },
+  cocktailInfo: {
+    marginTop: theme.spacing.lg,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: theme.typography.size.xxl,
+    borderBottomColor : theme.colors.accent,
+    borderStyle: 'solid',
+    borderBottomWidth: 2,
+    paddingBottom: theme.spacing.sm,
+    width: '80%',
+  },
+  cocktailTitle: {
+    width: '100%',
+    textAlign: 'center',
+    fontSize: theme.typography.size.xxl,
+    fontWeight: theme.typography.weight.bold,
+    fontFamily: theme.typography.fontFamily.title,
+    color: theme.colors.text,
+    borderBottomColor : theme.colors.accent,
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    paddingBottom: theme.spacing.sm,
   },
 }));
