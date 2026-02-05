@@ -44,8 +44,8 @@
             "./assets/fonts/CrimsonText-Bold.ttf",
             "./assets/fonts/CrimsonText-Italic.ttf",
             "./assets/fonts/CrimsonText-BoldItalic.ttf",
-            "./assets/fonts/BodoniModa-Regular.ttf",
-            "./assets/fonts/BodoniModa-Bold.ttf"
+            "./assets/fonts/BodoniModa-Italic.ttf",
+            "./assets/fonts/BodoniModa-Regular.ttf"
           ]
         }
       ]

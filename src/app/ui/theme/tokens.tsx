@@ -74,8 +74,8 @@ export const tokens = {
       semiBoldItalic: 'CrimsonText-SemiBoldItalic',
       bold: 'CrimsonText-Bold',
       boldItalic: 'CrimsonText-BoldItalic',
-      // title: 'BondoniModa-Regular',
-      // titleItalic: 'BondoniModa-Italic',
+      title: 'BondoniModa-Regular',
+      titleItalic: 'BondoniModa-Italic',
     },
 
     size: {
@@ -84,7 +84,7 @@ export const tokens = {
       md: 16,
       lg: 18,
       xl: 22,
-      xxl: 34,
+      xxl: 36,
     },
 
     lineHeight: {
