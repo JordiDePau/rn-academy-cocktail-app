@@ -15,7 +15,7 @@ const Header: React.FC = () => {
       source={require('../../../assets/images/hero.png')}
       style={styles.backgroundImage}
     >
-      <Text style={styles.title}>Saearch...</Text>
+      <Text style={styles.title}>Search...</Text>
       <Pressable
         onPress={() => navigate('overview')}
         hitSlop={10}
