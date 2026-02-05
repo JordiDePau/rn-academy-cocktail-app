@@ -1,21 +1,31 @@
 import React from 'react';
-import { FlatList, Pressable, RefreshControl, Text, View } from 'react-native';
-import { useNavigation } from 'expo-router';
+import { FlatList, Pressable, RefreshControl, Text, TextInput, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
-import { CocktailListItem } from 'app/components/CocktailListItem';
-import { CocktailType, useCocktailsListQuery } from 'app/queries/cocktails';
 import { ImageBackground } from 'expo-image';
+import { useNavigation } from 'expo-router';
+
+import { CocktailListItem } from 'app/components/CocktailListItem';
+import { useCocktailsListQuery } from 'app/queries/cocktails';
+
 import Close from '../../../assets/icon/close.svg';
 
 const Header: React.FC = () => {
+//hook for search input and navigation
+
   const { navigate } = useNavigation();
+
 
   return (
     <ImageBackground
       source={require('../../../assets/images/hero.png')}
       style={styles.backgroundImage}
     >
-      <Text style={styles.title}>Search...</Text>
+      <TextInput
+        placeholder="Search cocktails..."
+        // todo
+        placeholderTextColor="rgba(255, 255, 255, 0.7)"
+        style={styles.title}
+      />
       <Pressable
         onPress={() => navigate('overview')}
         hitSlop={10}
@@ -70,10 +80,6 @@ export const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: theme.colors.background, // now guaranteed
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
   backgroundImage: {
     width: '100%',
